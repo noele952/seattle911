@@ -7,17 +7,17 @@ Aid Response
 Aid Response Yellow
 Alarm Bell
 Auto Fire Alarm
+Automatic Fire Alarm False
 Automatic Fire Alarm Resd
 BC Medic Response- 6 per rule
 Bark Fire
 Brush Fire
 Brush Fire Freeway
+Car Fire
 Dumpster Fire
 EVENT - Special Event
 Encampment Aid
 Encampment Fire
-Fire in Building
-Food On The Stove
 Fuel Spill
 Hang-Up- Aid
 Illegal Burn
@@ -35,13 +35,15 @@ Natural Gas Odor
 Nurseline/AMR
 Poison Control
 Rescue Elevator
+Rescue Extrication
 Rescue Lock In/Out
 Rubbish Fire
 Scenes Of Violence 14
+Scenes Of Violence 7
 Single Medic Unit
+Trans to AMR
 Triaged Incident
 Unk Odor
-Vault Fire (Electrical)
 Water Job Minor
 Water Rescue Response
 Wires Down
