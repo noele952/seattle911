@@ -3,9 +3,9 @@ import boto3
 import botocore
 from shapely.geometry import Point, shape
 import json
+import os
 
-
-BUCKET = 'seattle-911-data'
+BUCKET = os.environ.get('BUCKET')
 filename = 'df_72hr.csv'
 neighborhoods_geojson = 'static/seattle_neighborhoods.geojson'
 
@@ -45,8 +45,6 @@ def create_incident_list(df):
     with open("static/incident_list.txt", 'w') as f:
         for incident in incident_list:
             f.write(incident + '\n')
-    # with open("static/incident_list.txt", 'r') as f:
-    #     incident_list = [line.rstrip('\n') for line in f]
     return 1
 
 

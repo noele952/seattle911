@@ -5,14 +5,13 @@ from wtforms import SubmitField, SelectField, StringField
 from wtforms.validators import DataRequired
 from flask_bootstrap import Bootstrap
 import os
-# import boto3
 
-# dynamodb = boto3.resource('dynamodb')
+
 app = Flask(__name__)
-app.config['SECRET_KEY'] = "SECRET_KEY"
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 Bootstrap(app)
 # sns = boto3.resource('sns')
-# topic = 'arn:aws:sns:us-east-1:643020469822:Seattle-911-message'
+# topic = os.environ.get('SNS_TOPIC')
 
 
 df = pd.read_csv('static/df_72hr.csv')
