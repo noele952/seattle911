@@ -4,15 +4,15 @@ from flask_wtf import FlaskForm
 from wtforms import SubmitField, SelectField, StringField
 from wtforms.validators import DataRequired
 from flask_bootstrap import Bootstrap
-import os
-import boto3
+# import os
+# import boto3
 
 # dynamodb = boto3.resource('dynamodb')
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "SECRET_KEY"
 Bootstrap(app)
-sns = boto3.resource('sns')
-topic = 'arn:aws:sns:us-east-1:643020469822:Seattle-911-message'
+# sns = boto3.resource('sns')
+# topic = 'arn:aws:sns:us-east-1:643020469822:Seattle-911-message'
 
 
 df = pd.read_csv('static/df_72hr.csv')
@@ -39,8 +39,8 @@ def index():
     form2 = CreateContactForm()
     incident_list = get_incident_list()
     if form2.validate_on_submit():
-        message = create_sns_message(form2.name.data, form2.email.data, form2.message.data)
-        publish_sns_message(topic, message)
+        # message = create_sns_message(form2.name.data, form2.email.data, form2.message.data)
+        # publish_sns_message(topic, message)
         return redirect(url_for('index'))
     if request.method == 'POST':
         m = create_incident_map(form.incident.data, form.neighborhood.data, df, geojson_df)
@@ -55,11 +55,11 @@ def index():
                            neighborhood_list=neighborhood_list)
 
 
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicon.ico',
-                               mimetype='image/vnd.microsoft.icon')
+# @app.route('/favicon.ico')
+# def favicon():
+#     return send_from_directory(os.path.join(app.root_path, 'static'),
+#                                'favicon.ico',
+#                                mimetype='image/vnd.microsoft.icon')
 
 
 if __name__ == '__main__':

@@ -1,34 +1,34 @@
-import boto3
+# import boto3
 import pandas as pd
-import botocore
+# import botocore
 import folium
 import json
 from shapely.geometry import shape
 
 
-def create_sns_message(name, email, message):
-    message = name + '\n' + email + '\n' + message
-    return message
+# def create_sns_message(name, email, message):
+#     message = name + '\n' + email + '\n' + message
+#     return message
+#
+#
+# def publish_sns_message(topic, message):
+#     response = topic.publish(Message=message)
+#     message_id = response['MessageId']
+#     return message_id
 
 
-def publish_sns_message(topic, message):
-    response = topic.publish(Message=message)
-    message_id = response['MessageId']
-    return message_id
-
-
-def retrieve_72hr_dataframe(bucket, filename):
-    s3 = boto3.resource('s3')
-    try:
-        s3.Bucket(bucket).download_file(filename, 'static/df_72hr.csv')
-    except botocore.exceptions.ClientError as e:
-        if e.response['Error']['Code'] == "404":
-            print("The object does not exist.")
-        else:
-            raise
-    df = pd.read_csv('static/df_72hr.csv')
-    df['datetime'] = pd.to_datetime(df['datetime'])
-    return df
+# def retrieve_72hr_dataframe(bucket, filename):
+#     s3 = boto3.resource('s3')
+#     try:
+#         s3.Bucket(bucket).download_file(filename, 'static/df_72hr.csv')
+#     except botocore.exceptions.ClientError as e:
+#         if e.response['Error']['Code'] == "404":
+#             print("The object does not exist.")
+#         else:
+#             raise
+#     df = pd.read_csv('static/df_72hr.csv')
+#     df['datetime'] = pd.to_datetime(df['datetime'])
+#     return df
 
 
 def get_incident_list():
@@ -62,9 +62,6 @@ def create_geojson_df_csv(geojson):
     zipped = list(zip(name, city, center_lon, center_lat, geometry))
     df = pd.DataFrame(zipped, columns=['name', 'city', 'center_lon', 'center_lat', 'geometry'])
     return df
-
-
-create_geojson_df_csv('static/seattle_neighborhoods.geojson')
 
 
 def create_incident_map(current_incident, neighborhood, incident_df, geojson_df):
