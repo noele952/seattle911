@@ -1,10 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 from funcs import *
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, SelectField, StringField
 from wtforms.validators import DataRequired
 from flask_bootstrap import Bootstrap
-# import os
+import os
 # import boto3
 
 # dynamodb = boto3.resource('dynamodb')
@@ -55,11 +55,11 @@ def index():
                            neighborhood_list=neighborhood_list)
 
 
-# @app.route('/favicon.ico')
-# def favicon():
-#     return send_from_directory(os.path.join(app.root_path, 'static'),
-#                                'favicon.ico',
-#                                mimetype='image/vnd.microsoft.icon')
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico',
+                               mimetype='image/vnd.microsoft.icon')
 
 
 if __name__ == '__main__':

@@ -1,6 +1,6 @@
-import boto3
+# import boto3
 import pandas as pd
-import botocore
+# import botocore
 import folium
 import json
 from shapely.geometry import shape
@@ -15,20 +15,6 @@ from shapely.geometry import shape
 #     response = topic.publish(Message=message)
 #     message_id = response['MessageId']
 #     return message_id
-
-
-# def retrieve_72hr_dataframe(bucket, filename):
-#     s3 = boto3.resource('s3')
-#     try:
-#         s3.Bucket(bucket).download_file(filename, 'static/df_72hr.csv')
-#     except botocore.exceptions.ClientError as e:
-#         if e.response['Error']['Code'] == "404":
-#             print("The object does not exist.")
-#         else:
-#             raise
-#     df = pd.read_csv('static/df_72hr.csv')
-#     df['datetime'] = pd.to_datetime(df['datetime'])
-#     return df
 
 
 def get_incident_list():
@@ -48,10 +34,6 @@ def create_neighborhood_list(df):
 
 
 def create_geojson_df_csv(geojson):
-    # df = gpd.read_file(geojson)
-    # df['center_lon'] = df['geometry'].centroid.x
-    # df['center_lat'] = df['geometry'].centroid.y
-    # return df
     with open(geojson) as f:
         features = json.load(f)['features']
     center_lon = [shape(feature["geometry"]).buffer(0).centroid.x for feature in features]
@@ -78,9 +60,6 @@ def create_incident_map(current_incident, neighborhood, incident_df, geojson_df)
         for feature in features:
             if feature['properties']['name'] == neighborhood:
                 folium.GeoJson(feature['geometry'], name='geojson').add_to(m)
-        # print(geojson_df[geojson_df.name == neighborhood].geometry)
-        # folium.GeoJson(json.dumps(geojson_df[geojson_df.name == neighborhood].geometry, indent=4),
-        # name='geojson').add_to(m)
     for index, series in incident_df.iterrows():
         if current_incident == 'All Incidents':
             folium.Marker(

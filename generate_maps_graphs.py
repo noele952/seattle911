@@ -8,7 +8,7 @@ csv_data = 'static/df_72hr.csv'
 
 
 def generate_heatmap(incident_df):
-    point_list=[]
+    point_list = []
     for index, series in incident_df.iterrows():
         new_point = Point(series.longitude, series.latitude)
         point_list.append(new_point)

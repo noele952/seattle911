@@ -45,8 +45,8 @@ def create_incident_list(df):
     with open("static/incident_list.txt", 'w') as f:
         for incident in incident_list:
             f.write(incident + '\n')
-    with open("static/incident_list.txt", 'r') as f:
-        incident_list = [line.rstrip('\n') for line in f]
+    # with open("static/incident_list.txt", 'r') as f:
+    #     incident_list = [line.rstrip('\n') for line in f]
     return 1
 
 
