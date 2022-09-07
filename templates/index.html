@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+
+{% block title %}
+{% endblock %}
+<!--
+	Directive by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Directive by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
+		<script src="https://kit.fontawesome.com/d2c60f03e4.js" crossorigin="anonymous"></script>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<div id="header">
+				<h1>Seattle 911 Real Time</h1>
+				<p>Database updated hourly. Seattle 911 data mapped and analyzed city wide, or search by neighborhood</p>
+				<p> data provided by<a href="https://data.seattle.gov/">Seattle Open Data</a>.</p>
+			</div>
+
+		<!-- Main -->
+			<div id="main" style="width:90%; margin:auto;">
+
+				<div class="major container-lg" style="padding:10px; width=90%;">
+				<div>
+					<h2> Seattle Real Time Fire 911 Calls (72hr)</h2>
+				<br>
+					<h1 style="padding:0px; line-height:.75em; margin-block-start: 0px;
+    margin-block-end:0px;">Search by neighborhood and/or incident type below</h1>
+</div>
+
+<div id="map-pos" class="container-md" style="width:90%; margin:auto;">
+	<form class="form-inline" style="padding:8px" method="POST" action="{{ url_for('index') }}">
+		{{ form.hidden_tag() }}
+  <div class="col-sm-4" style="padding-right:2px; padding-left:2px; width:20%;">
+    {{form.incident(style="line-height: .7em;") }}
+  </div>
+
+  <div class="col-sm-4" style="width:20%; padding-left:2px; padding-right:2px;">
+    {{form.neighborhood(style="line-height:.7em;") }}
+  </div>
+<div class="col-sm-4" style="width:13%; padding-left:2px;">
+  {{form.submit}}
+</div>
+</form>
+
+  {{ map | safe }}
+	</div>
+</div>
+
+					<h2>Total Incidents by Type
+					<br>
+					Incident Totals Per Hour</h2>
+
+
+</div>
+
+				<div class="box alt container" style="margin:auto;">
+					<section class="feature left">
+
+						<iframe class="image" src="static/sunburst.html" ></iframe>
+						<div class="content">
+							<a href="{{ url_for('static', filename='sunburst.html') }}"><h3>Total Incidents By Type</h3></a>
+							<p>Total Incidents of all type, categorized into Medical, Fire, Police and Other. Click the
+							interactive sunburst on the graph to find out more. If you click a category in the center
+							circle, the graph will reconfigure to show the breakdown for that category. You can see a
+							larger full page graph by clicking on the title above, or by
+							<a href="{{ url_for('static', filename='sunburst.html') }}" style="color:#337ab7;">clicking this link.</a>
+							</p>
+						</div>
+					</section>
+					<section class="feature right">
+						<iframe class="image" src="static/histogram.html"></iframe>
+						<div class="content">
+							<a href="{{ url_for('static', filename='histogram.html') }}"><h3>Incident Totals Per Hour</h3></a>
+							<p>The height of each bar in the histogram reflects the total incidents per hour, with a color
+							coded breakdown by category as well. Hover your cursor over the bars of the chart for more information.
+								You can see a larger full page graph by clicking on the title above, or by
+							<a href="{{ url_for('static', filename='histogram.html') }}" style="color:#337ab7;">clicking this link.</a></p>
+						</div>
+					</section>
+				</div>
+		<div style="margin:auto; text-align:center;">
+<a href="{{ url_for('static', filename='heat_map.html') }}"><h2>Heatmap</h2> </a>
+<p style="font-size:14pt; padding:5px; line-height:1.5em; margin:auto;">Incidents over the last 72 hours complied as a
+heatmap. Use the scroll and zoom functions of the map to take a closer look at your neighborhood.
+	<br>Click the Heatmap title above to view a full-screen
+version of this map, or <a href="{{ url_for('static', filename='histogram.html') }}" style="color:#337ab7;">click on this link.</a></p>
+			</div>
+<container class="container-md" style="margin:auto;">
+
+	<iframe src="static/heat_map.html" style="width:85%; height:100%; margin:auto; display:block;"></iframe>
+</container>
+		<!-- Footer -->
+			<div id="footer">
+				<div class="container medium" style="margin:auto;">
+
+
+						<h2 style="color:black;">Questions or comments?</h2>
+
+
+					<p style="color:black;">We would love to hear from you</p>
+
+
+
+					<form method="POST" action="{{ url_for('index') }}">
+						{{ form2.hidden_tag() }}
+						<div class="row">
+							<div class="col-6 col-12-mobilep">
+								{{ form2.name() }}
+							</div>
+							<div class="col-6 col-12-mobilep">
+								{{ form2.email() }}
+							</div>
+							<div class="col-12">
+								{{ form2.message() }}
+							</div>
+							<div class="col-12">
+								{{form2.submit}}
+							</div>
+						</div>
+					</form>
+
+					<ul class="icons">
+						<li><a href="https://twitter.com/noeldoesdefi" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="https://www.facebook.com/noel.alderman" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+						<li><a href="https://www.instagram.com/vintageeurocarsnw/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="https://github.com/noele952" class="icon brands fa-github"><span class="label">Github</span></a></li>
+					</ul>
+
+					<ul class="copyright">
+						<li>&copy; Noel Alderman. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+
+				</div>
+			</div>
+
+		<!-- Scripts -->
+			<script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='assets/js/browser.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='assets/js/util.js') }}"></script>
+			<script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+
+	</body>
+</html>
+{% endblock %}

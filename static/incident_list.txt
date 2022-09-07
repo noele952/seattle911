@@ -1,0 +1,47 @@
+All Incidents
+1RED 1 Unit
+4RED - 2 + 1 + 1
+AFA4 - Auto Alarm 2 + 1 + 1
+Activated CO Detector
+Aid Response
+Aid Response Yellow
+Alarm Bell
+Auto Fire Alarm
+Automatic Fire Alarm Resd
+BC Medic Response- 6 per rule
+Bark Fire
+Brush Fire
+Brush Fire Freeway
+Dumpster Fire
+EVENT - Special Event
+Encampment Aid
+Encampment Fire
+Fire in Building
+Food On The Stove
+Fuel Spill
+Hang-Up- Aid
+Illegal Burn
+Investigate Out Of Service
+Low Acuity Referral
+Low Acuity Response
+MVI - Motor Vehicle Incident
+MVI Medic
+Medic Response
+Medic Response- 6 per Rule
+Medic Response- 7 per Rule
+Medic Response- Overdose
+Mutual Aid- Medic
+Natural Gas Odor
+Nurseline/AMR
+Poison Control
+Rescue Elevator
+Rescue Lock In/Out
+Rubbish Fire
+Scenes Of Violence 14
+Single Medic Unit
+Triaged Incident
+Unk Odor
+Vault Fire (Electrical)
+Water Job Minor
+Water Rescue Response
+Wires Down
