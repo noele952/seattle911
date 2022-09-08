@@ -3,9 +3,9 @@ import boto3
 import botocore
 from shapely.geometry import Point, shape
 import json
-import os
+from funcs import get_parameters
 
-BUCKET = os.environ.get('BUCKET')
+BUCKET = get_parameters('BUCKET')
 filename = 'df_72hr.csv'
 neighborhoods_geojson = 'static/seattle_neighborhoods.geojson'
 

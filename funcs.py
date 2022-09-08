@@ -1,20 +1,43 @@
-# import boto3
+import boto3
 import pandas as pd
-# import botocore
+from botocore.exceptions import ClientError
 import folium
 import json
 from shapely.geometry import shape
 
 
-# def create_sns_message(name, email, message):
-#     message = name + '\n' + email + '\n' + message
-#     return message
-#
-#
-# def publish_sns_message(topic, message):
-#     response = topic.publish(Message=message)
-#     message_id = response['MessageId']
-#     return message_id
+AWS_DEFAULT_REGION = 'us-east-1'
+ssm = boto3.client('ssm', AWS_DEFAULT_REGION)
+
+
+def get_parameters(parameter_name):
+    prefix = '/seattle911/'
+    parameter = ssm.get_parameter(Name = prefix + parameter_name)['Parameter']['Value']
+    return parameter
+
+
+def create_sns_message(name, email, message):
+    message = name + '\n' + email + '\n' + message
+    return message
+
+
+def publish_sns_message(topic_arn, message):
+    """
+    Publishes a message to a topic.
+    """
+    sns = boto3.client('sns', region_name=AWS_DEFAULT_REGION)
+    subject = 'Seattle 911 Contact Form'
+    try:
+
+        response = sns.publish(
+            TopicArn=topic_arn,
+            Message=message,
+            Subject=subject,
+        )['MessageId']
+    except ClientError as err:
+        print(err)
+    else:
+        return response
 
 
 def get_incident_list():
