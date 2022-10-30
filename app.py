@@ -5,14 +5,14 @@ from wtforms import SubmitField, SelectField, StringField
 from wtforms.validators import DataRequired
 from flask_bootstrap import Bootstrap
 import os
-import boto3
+# import boto3
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = get_parameters('SECRET_KEY')
+app.config['SECRET_KEY'] = 'SECRET_KEY'
 Bootstrap(app)
-sns = boto3.resource('sns')
-topic = get_parameters('SNS_TOPIC')
+# sns = boto3.resource('sns')
+# topic = os.getenv('SNS_TOPIC')
 
 
 df = pd.read_csv('static/df_72hr.csv')
@@ -40,7 +40,7 @@ def index():
     incident_list = get_incident_list()
     if form2.validate_on_submit():
         message = create_sns_message(form2.name.data, form2.email.data, form2.message.data)
-        publish_sns_message(topic, message)
+        # publish_sns_message(topic, message)
         return redirect(url_for('index'))
     if request.method == 'POST':
         m = create_incident_map(form.incident.data, form.neighborhood.data, df, geojson_df)
